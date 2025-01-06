@@ -23,17 +23,20 @@ Czy system umożliwia łatwe dodawanie i usuwanie elementów sieci? +
 _____________________________________________________________________________________________________________________________________________
 2. Znalezienie najkrótszej ścieżki + Benchmarki 
 Implementacja algorytmu optymalizacji trasy w sieci autobusowej. Zaimplementuj algorytm Dijkstry, który znajduje najkrótszą trasę między dwoma przystankami w grafie.
+
 Wymagania: 
 System powinien znaleźć najkrótszą trasę między dwoma dowolnymi węzłami (przystankami lub zajezdniami).
 Uwzględnij wagi krawędzi (np. czas przejazdu lub dystans).
 Zmierz wydajność algorytmu: przeprowadź benchmarki dla różnych rozmiarów sieci (np. 10, 100, 1000 węzłów) i zbadaj czas działania oraz zużycie pamięci.
+
 Kryteria oceny: 
-Poprawność algorytmu: czy znajduje faktycznie najkrótszą trasę.
-Efektywność: czas działania algorytmu dla różnych wielkości sieci.
-Benchmarki: czy raporty z testów wydajności są poprawnie zrealizowane i przedstawione.
+Poprawność algorytmu: czy znajduje faktycznie najkrótszą trasę. +
+Efektywność: czas działania algorytmu dla różnych wielkości sieci. +
+Benchmarki: czy raporty z testów wydajności są poprawnie zrealizowane i przedstawione. +
 _____________________________________________________________________________________________________________________________________________
 3. Wczytywanie sieci z pliku JSON 
 Zaimplementuj możliwość wczytywania sieci autobusowej z pliku JSON. Sieć powinna być reprezentowana w strukturze JSON, która zawiera przystanki, zajezdnie i połączenia między nimi.
+
 Struktura przykładowego pliku JSON: 
 {
   "nodes": [
@@ -52,9 +55,10 @@ Struktura przykładowego pliku JSON:
     {"from": "E", "to": "C", "distance": 4, "time": 8}
   ]
 }
+
 Kryteria oceny: 
-Poprawność wczytywania JSON: Czy system poprawnie parsuje plik JSON i tworzy na jego podstawie graf.
-Elastyczność: Czy system działa z różnymi plikami JSON o różnej strukturze (np. większa liczba węzłów, inne właściwości krawędzi).
+Poprawność wczytywania JSON: Czy system poprawnie parsuje plik JSON i tworzy na jego podstawie graf. +
+Elastyczność: Czy system działa z różnymi plikami JSON o różnej strukturze (np. większa liczba węzłów, inne właściwości krawędzi). +
 _____________________________________________________________________________________________________________________________________________
 4. Kontrola wersji i CI/CD 
 Wprowadź system kontroli wersji do projektu (np. Git). Każda nowa funkcjonalność powinna być oddzielnym commitem z odpowiednim opisem.

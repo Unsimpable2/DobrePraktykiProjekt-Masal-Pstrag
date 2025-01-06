@@ -1,6 +1,5 @@
 class BusNetworkGraph:
     def __init__(self):
-
         self.graph = {}
 
     def add_node(self, node):
@@ -12,7 +11,7 @@ class BusNetworkGraph:
 
     def remove_node(self, node):
         if node in self.graph:
-            del self.graph[node]  
+            del self.graph[node]
             for edges in self.graph.values():
                 edges.pop(node, None)
             print(f"Węzeł '{node}' został usunięty.")
@@ -48,9 +47,3 @@ class BusNetworkGraph:
         for from_node, edges in self.graph.items():
             for to_node, weight in edges.items():
                 print(f"  {from_node} -> {to_node} (waga: {weight})")
-
-    def display_nodes(self):
-        nodes = list(self.graph.keys())
-        for i, node in enumerate(nodes, start=1):
-            print(f"{i}. {node}")
-        return nodes

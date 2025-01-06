@@ -1,4 +1,5 @@
-from graph import BusNetworkGraph
+from graph import BusNetworkGraph, dijkstra_alg, load_from_json
+from benchmark import run_benchmarks
 
 if __name__ == "__main__":
     graph = BusNetworkGraph()
@@ -10,7 +11,10 @@ if __name__ == "__main__":
         print("3. Dodaj trasę między przystankami")
         print("4. Usuń trasę między przystankami")
         print("5. Wyświetl stan grafu")
-        print("6. Wyjście")
+        print("6. Znajdź najkrótszą trasę (Dijkstra)")
+        print("7. Wczytaj sieć z pliku JSON")
+        print("8. Wykonaj benchmark wydajności")
+        print("9. Wyjście")
 
         choice = input("Wybierz opcję: ")
 
@@ -23,40 +27,40 @@ if __name__ == "__main__":
             graph.remove_node(node)
 
         elif choice == "3":
-            print("Dostępne przystanki:")
-            nodes = graph.display_nodes()
-            from_index = int(input("Wybierz numer przystanku początkowego: ")) - 1
-            to_index = int(input("Wybierz numer przystanku końcowego: ")) - 1
-
-            if from_index == to_index:
-                print("Początkowy i końcowy przystanek nie mogą być takie same.")
-            elif 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
-                from_node = nodes[from_index]
-                to_node = nodes[to_index]
-                weight = float(input("Podaj wagę trasy (np. czas lub odległość): "))
-                graph.add_edge(from_node, to_node, weight)
-            else:
-                print("Nieprawidłowy wybór przystanków.")
+            from_node = input("Podaj nazwę przystanku początkowego: ")
+            to_node = input("Podaj nazwę przystanku końcowego: ")
+            weight = float(input("Podaj wagę trasy: "))
+            graph.add_edge(from_node, to_node, weight)
 
         elif choice == "4":
-            print("Dostępne przystanki:")
-            nodes = graph.display_nodes()
-            from_index = int(input("Wybierz numer przystanku początkowego: ")) - 1
-            to_index = int(input("Wybierz numer przystanku końcowego: ")) - 1
-
-            if from_index == to_index:
-                print("Początkowy i końcowy przystanek nie mogą być takie same.")
-            elif 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
-                from_node = nodes[from_index]
-                to_node = nodes[to_index]
-                graph.remove_edge(from_node, to_node)
-            else:
-                print("Nieprawidłowy wybór przystanków.")
+            from_node = input("Podaj nazwę przystanku początkowego: ")
+            to_node = input("Podaj nazwę przystanku końcowego: ")
+            graph.remove_edge(from_node, to_node)
 
         elif choice == "5":
             graph.display_graph()
 
         elif choice == "6":
+            start = input("Podaj nazwę przystanku początkowego: ")
+            end = input("Podaj nazwę przystanku końcowego: ")
+            path, cost = dijkstra_alg(graph.graph, start, end)
+            if path:
+                print(f"Najkrótsza trasa: {' -> '.join(path)} (koszt: {cost})")
+            else:
+                print("Brak trasy między wybranymi przystankami.")
+
+        elif choice == "7":
+            file_path = input("Podaj ścieżkę do pliku JSON: ")
+            load_from_json(graph, file_path)
+
+        elif choice == "8":
+            if not graph.graph:
+                print("Graf jest pusty. Wczytaj dane lub dodaj przystanki i połączenia przed wykonaniem benchmarków.")
+            else:
+                print("Uruchamianie benchmarków wydajności...")
+                run_benchmarks()
+
+        elif choice == "9":
             print("Zakończono program.")
             break
 

@@ -1,0 +1,66 @@
+{
+    "nodes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J"
+    ],
+    "edges": [
+        {
+            "from": "A",
+            "to": "B",
+            "weight": 5.0
+        },
+        {
+            "from": "A",
+            "to": "C",
+            "weight": 3.0
+        },
+        {
+            "from": "B",
+            "to": "D",
+            "weight": 2.5
+        },
+        {
+            "from": "C",
+            "to": "D",
+            "weight": 4.5
+        },
+        {
+            "from": "D",
+            "to": "E",
+            "weight": 6.0
+        },
+        {
+            "from": "E",
+            "to": "F",
+            "weight": 2.0
+        },
+        {
+            "from": "F",
+            "to": "G",
+            "weight": 7.0
+        },
+        {
+            "from": "G",
+            "to": "H",
+            "weight": 1.5
+        },
+        {
+            "from": "H",
+            "to": "I",
+            "weight": 3.5
+        },
+        {
+            "from": "I",
+            "to": "J",
+            "weight": 4.0
+        }
+    ]
+}

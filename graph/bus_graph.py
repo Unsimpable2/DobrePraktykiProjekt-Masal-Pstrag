@@ -1,5 +1,6 @@
 class BusNetworkGraph:
     def __init__(self):
+
         self.graph = {}
 
     def add_node(self, node):
@@ -11,7 +12,7 @@ class BusNetworkGraph:
 
     def remove_node(self, node):
         if node in self.graph:
-            del self.graph[node]
+            del self.graph[node]  
             for edges in self.graph.values():
                 edges.pop(node, None)
             print(f"Węzeł '{node}' został usunięty.")
@@ -19,6 +20,10 @@ class BusNetworkGraph:
             print(f"Węzeł '{node}' nie istnieje.")
 
     def add_edge(self, from_node, to_node, weight):
+        if from_node == to_node:
+            print("Początkowy i końcowy przystanek nie mogą być takie same.")
+            return
+
         if from_node not in self.graph:
             print(f"Węzeł początkowy '{from_node}' nie istnieje. Najpierw go dodaj.")
             return

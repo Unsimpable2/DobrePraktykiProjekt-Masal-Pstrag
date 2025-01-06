@@ -28,7 +28,9 @@ if __name__ == "__main__":
             from_index = int(input("Wybierz numer przystanku początkowego: ")) - 1
             to_index = int(input("Wybierz numer przystanku końcowego: ")) - 1
 
-            if 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
+            if from_index == to_index:
+                print("Początkowy i końcowy przystanek nie mogą być takie same.")
+            elif 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
                 from_node = nodes[from_index]
                 to_node = nodes[to_index]
                 weight = float(input("Podaj wagę trasy (np. czas lub odległość): "))
@@ -42,7 +44,9 @@ if __name__ == "__main__":
             from_index = int(input("Wybierz numer przystanku początkowego: ")) - 1
             to_index = int(input("Wybierz numer przystanku końcowego: ")) - 1
 
-            if 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
+            if from_index == to_index:
+                print("Początkowy i końcowy przystanek nie mogą być takie same.")
+            elif 0 <= from_index < len(nodes) and 0 <= to_index < len(nodes):
                 from_node = nodes[from_index]
                 to_node = nodes[to_index]
                 graph.remove_edge(from_node, to_node)

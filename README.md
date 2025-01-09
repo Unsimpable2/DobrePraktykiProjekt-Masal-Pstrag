@@ -78,21 +78,25 @@ Wprowadź testowanie oparte na podejściu TDD (Test Driven Development). Każdy 
 Wymagania: 
 Stwórz testy jednostkowe dla podstawowych operacji na grafach (dodawanie węzłów, krawędzi, znajdowanie najkrótszej ścieżki).
 Wykorzystaj narzędzia do automatycznego uruchamiania testów (np. JUnit, PyTest).
+
 Kryteria oceny: 
-Czy wszystkie funkcjonalności są pokryte testami jednostkowymi?
-Czy kod jest pisany zgodnie z zasadami TDD?
+Czy wszystkie funkcjonalności są pokryte testami jednostkowymi? +
+Czy kod jest pisany zgodnie z zasadami TDD? +
 _____________________________________________________________________________________________________________________________________________
 6. Feature Flagi (Zarządzanie ryzykiem) 
 Wprowadź mechanizm Feature Flag, który umożliwia dynamiczne włączanie i wyłączanie niektórych funkcji w systemie bez konieczności zmiany kodu.
+
 Wymagania: 
 Zaimplementuj możliwość dodawania nowych funkcji (np. optymalizacja pod kątem ruchu drogowego) z możliwością ich wyłączenia bez modyfikacji głównej logiki.
 Upewnij się, że system jest w stanie działać nawet bez tych dodatkowych funkcji.
+
 Kryteria oceny: 
 Czy mechanizm Feature Flagów działa poprawnie?
 Czy możesz łatwo włączać i wyłączać funkcje w systemie?
 _____________________________________________________________________________________________________________________________________________
 7. Dokumentacja 
 Dodaj do systemu dokumentacje, co i jak robi projekt oraz ważne informacje projektowe.
+
 Wymagania i kryteria oceny: 
 Dokumentacja w formie docStringów w kodzie
 Wygenerowana dokumentacja w postaci github pages i MkDocs (w postaci pipelinu)
@@ -100,9 +104,11 @@ Dokładne i dopieszczone README.md projektu
 _____________________________________________________________________________________________________________________________________________
 8. Code Review i umiejętności miękkie 
 Pracując w zespole, przeprowadź code review. Każdy członek zespołu powinien przeanalizować kod innego członka, sugerując poprawki, optymalizacje i lepsze rozwiązania.
+
 Wymagania: 
 Każdy musi przeprowadzić przynajmniej jedno code review na kodzie kolegi/koleżanki.
 Dyskutujcie o rozwiązaniach w sposób konstruktywny, uzasadniając swoje komentarze.
+
 Kryteria oceny: 
 Jakość code review (czy poprawki są wartościowe, czy są konstruktywne).
 Umiejętność dyskusji technicznej (czy wyrażacie się jasno i bez zbędnych emocji).

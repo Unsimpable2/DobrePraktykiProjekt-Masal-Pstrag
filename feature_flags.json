@@ -1,0 +1,12 @@
+{
+    "traffic_optimization": false,
+    "benchmarking": true,
+    "enable_add_node": true,
+    "enable_remove_node": true,
+    "enable_add_edge": true,
+    "enable_remove_edge": true,
+    "enable_display_graph": true,
+    "enable_load_nodes": true,
+    "enable_load_edges": true,
+    "enable_load_properties": true
+}

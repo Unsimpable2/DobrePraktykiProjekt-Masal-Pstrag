@@ -1,8 +1,10 @@
-from graph import BusNetworkGraph, dijkstra_alg, load_from_json
 from benchmark import run_benchmarks
+from feature_flags import FeatureFlags
+from graph import BusNetworkGraph, dijkstra_alg, load_from_json
 
 if __name__ == "__main__":
     graph = BusNetworkGraph()
+    feature_flags = FeatureFlags()
 
     while True:
         print("\nZarządzanie siecią autobusową")
@@ -14,7 +16,8 @@ if __name__ == "__main__":
         print("6. Znajdź najkrótszą trasę (Dijkstra)")
         print("7. Wczytaj sieć z pliku JSON")
         print("8. Wykonaj benchmark wydajności")
-        print("9. Wyjście")
+        print("9. Włącz/wyłącz optymalizację ruchu drogowego")
+        print("10. Wyjście")
 
         choice = input("Wybierz opcję: ")
 
@@ -54,13 +57,24 @@ if __name__ == "__main__":
             load_from_json(graph, file_path)
 
         elif choice == "8":
-            if not graph.graph:
-                print("Graf jest pusty. Wczytaj dane lub dodaj przystanki i połączenia przed wykonaniem benchmarków.")
+            if feature_flags.is_enabled("benchmarking"):
+                if not graph.graph:
+                    print("Graf jest pusty. Wczytaj dane lub dodaj przystanki i połączenia przed wykonaniem benchmarków.")
+                else:
+                    print("Uruchamianie benchmarków wydajności...")
+                    run_benchmarks()
             else:
-                print("Uruchamianie benchmarków wydajności...")
-                run_benchmarks()
+                print("Funkcja benchmarków jest wyłączona.")
 
         elif choice == "9":
+            if feature_flags.is_enabled("traffic_optimization"):
+                print("Optymalizacja ruchu drogowego jest WŁĄCZONA. Wyłączam...")
+                feature_flags.disable("traffic_optimization")
+            else:
+                print("Optymalizacja ruchu drogowego jest WYŁĄCZONA. Włączam...")
+                feature_flags.enable("traffic_optimization")
+
+        elif choice == "10":
             print("Zakończono program.")
             break
 

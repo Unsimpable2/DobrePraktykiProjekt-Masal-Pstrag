@@ -1,7 +1,16 @@
 import heapq
 from collections import defaultdict
+from feature_flags import FeatureFlags
 
 def dijkstra_alg(graph, start, end):
+    feature_flags = FeatureFlags()
+
+    if feature_flags.is_enabled("traffic_optimization"):
+        print("Włączono optymalizację ruchu drogowego.")
+        graph = optimize_graph_based_on_traffic(graph)
+    else:
+        print("Optymalizacja ruchu drogowego jest wyłączona.")
+
     if start not in graph or end not in graph:
         print("Węzeł początkowy lub końcowy nie istnieje w grafie.")
         return None, float('inf')
@@ -34,3 +43,13 @@ def dijkstra_alg(graph, start, end):
         path.insert(0, start)
 
     return path, distances[end]
+
+def optimize_graph_based_on_traffic(graph):
+    optimized_graph = {}
+    for from_node, edges in graph.items():
+        optimized_graph[from_node] = {}
+        for to_node, weight in edges.items():
+            traffic_factor = 1.5
+            optimized_weight = weight * traffic_factor
+            optimized_graph[from_node][to_node] = round(optimized_weight, 2)
+    return optimized_graph

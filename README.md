@@ -91,8 +91,8 @@ Zaimplementuj możliwość dodawania nowych funkcji (np. optymalizacja pod kąte
 Upewnij się, że system jest w stanie działać nawet bez tych dodatkowych funkcji.
 
 Kryteria oceny: 
-Czy mechanizm Feature Flagów działa poprawnie?
-Czy możesz łatwo włączać i wyłączać funkcje w systemie?
+Czy mechanizm Feature Flagów działa poprawnie? +
+Czy możesz łatwo włączać i wyłączać funkcje w systemie? +
 _____________________________________________________________________________________________________________________________________________
 7. Dokumentacja 
 Dodaj do systemu dokumentacje, co i jak robi projekt oraz ważne informacje projektowe.

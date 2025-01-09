@@ -66,11 +66,12 @@ Wprowadź system kontroli wersji do projektu (np. Git). Każda nowa funkcjonalno
 Skonfiguruj pipeline CI/CD, który będzie automatycznie testował i wdrażał projekt przy każdej nowej zmianie w kodzie.
 
 Wymagania: 
-Używaj Git do zarządzania kodem, commitując regularnie i opisując zmiany.
+Używaj Git do zarządzania kodem, commitując regularnie i opisując zmiany. 
 Skonfiguruj pipeline CI/CD (np. GitHub Actions, GitLab CI), który będzie uruchamiał testy i automatycznie wdrażał aplikację.
+
 Kryteria oceny: 
-Czy kontrola wersji jest używana poprawnie (częste commity, opisy zmian)?
-Czy pipeline CI/CD działa poprawnie, uruchamiając testy i wdrażając aplikację?
+Czy kontrola wersji jest używana poprawnie (częste commity, opisy zmian)? +
+Czy pipeline CI/CD działa poprawnie, uruchamiając testy i wdrażając aplikację? 
 _____________________________________________________________________________________________________________________________________________
 5. Testowanie kodu (TDD i testy jednostkowe) 
 Wprowadź testowanie oparte na podejściu TDD (Test Driven Development). Każdy fragment funkcjonalności, który dodajesz do systemu, powinien być najpierw opisany przez test jednostkowy, a dopiero potem zaimplementowany.

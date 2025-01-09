@@ -2,6 +2,22 @@ import json
 from feature_flags import FeatureFlags
 
 def load_from_json(graph, file_path):
+    """
+    Wczytuje dane grafu z pliku JSON i dodaje je do istniejącego grafu.
+
+    Funkcja obsługuje Feature Flags, które pozwalają dynamicznie włączać lub wyłączać
+    wczytywanie węzłów, krawędzi oraz dodatkowych właściwości grafu.
+
+    Args:
+        graph (BusNetworkGraph): Obiekt grafu, do którego mają być wczytane dane.
+        file_path (str): Ścieżka do pliku JSON zawierającego dane grafu.
+
+    Returns:
+        None
+
+    Wyświetla komunikaty o stanie operacji oraz ostrzeżenia w przypadku wyłączenia
+    poszczególnych funkcjonalności przez Feature Flags.
+    """
     feature_flags = FeatureFlags()
 
     try:

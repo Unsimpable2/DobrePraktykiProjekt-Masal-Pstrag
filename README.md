@@ -1,115 +1,157 @@
-Implementacja algorytmu Prima do wyznaczania minimalnego drzewa rozpinającego				
+# Dokumentacja Projektu: Optymalizacja Sieci Autobusowej
 
-Projekt: Optymalizacja sieci autobusowej przy użyciu teorii grafów 
-Cel projektu: 
-    Twoim zadaniem będzie zaprojektowanie i zaimplementowanie systemu, który optymalizuje sieć autobusową, korzystając z teorii grafów. Sieć autobusowa będzie reprezentowana jako graf, gdzie węzły to przystanki autobusowe i zajezdnie, a krawędzie to trasy między nimi. System powinien być w stanie znaleźć najkrótszą trasę między dowolnymi punktami oraz ocenić efektywność algorytmów na podstawie benchmarków.
+## Opis Projektu
+Projekt ma na celu modelowanie i optymalizację sieci autobusowej za pomocą teorii grafów. Główne funkcjonalności obejmują:
+- Reprezentację sieci autobusowej jako grafu (węzły to przystanki, a krawędzie to trasy między nimi).
+- Obsługę operacji na grafie, takich jak dodawanie i usuwanie węzłów oraz krawędzi.
+- Obliczanie najkrótszej trasy za pomocą algorytmu Dijkstry.
+- Możliwość dynamicznego zarządzania funkcjami systemu dzięki mechanizmowi Feature Flags.
+- Benchmarki wydajności dla różnych wielkości grafów.
 
-Projekt będzie rozwijany etapowo, a każdy tydzień wprowadzi nowe zagadnienia, które musisz zaimplementować w projekcie, m.in. testowanie, zarządzanie ryzykiem, kontrola wersji, a także dobra dokumentacja kodu.
+---
 
-Wymagania projektu: 
-_____________________________________________________________________________________________________________________________________________
-1. Reprezentacja sieci autobusowej (grafów) 
+## Funkcjonalności
+### 1. Zarządzanie Grafem
+- Dodawanie przystanków (węzłów).
+- Usuwanie przystanków.
+- Dodawanie tras (krawędzi) z określoną wagą (np. odległością lub czasem przejazdu).
+- Usuwanie tras.
+- Wyświetlanie aktualnego stanu grafu.
 
-W pierwszym kroku zaimplementuj reprezentację sieci autobusowej w formie grafu. Graf powinien zawierać:
+### 2. Algorytm Dijkstry
+- Znajdowanie najkrótszej trasy między wybranymi przystankami.
+- Obsługa optymalizacji wag tras na podstawie ruchu drogowego (Feature Flag).
 
-Węzły reprezentujące przystanki i zajezdnie autobusowe.
-Krawędzie łączące węzły, które reprezentują możliwe trasy autobusów z przypisanymi wagami (np. czas przejazdu, odległość).
-Zaimplementuj podstawowe operacje na grafach, takie jak dodawanie i usuwanie węzłów oraz krawędzi.
+### 3. Wczytywanie Grafu z Pliku JSON
+- Obsługa plików JSON o strukturze zawierającej węzły, krawędzie i dodatkowe właściwości grafu.
 
-Kryteria oceny: 
-Czy system posiada interfejs użytkownika do obsługi programu? +
-Czy graf jest poprawnie zdefiniowany i łatwy w obsłudze? +
-Czy system umożliwia łatwe dodawanie i usuwanie elementów sieci? +
-_____________________________________________________________________________________________________________________________________________
-2. Znalezienie najkrótszej ścieżki + Benchmarki 
-Implementacja algorytmu optymalizacji trasy w sieci autobusowej. Zaimplementuj algorytm Dijkstry, który znajduje najkrótszą trasę między dwoma przystankami w grafie.
+### 4. Benchmarki Wydajności
+- Testy wydajności dla grafów o różnych rozmiarach (np. 10, 100, 1000 węzłów).
+- Generowanie raportów z czasów wykonania operacji.
 
-Wymagania: 
-System powinien znaleźć najkrótszą trasę między dwoma dowolnymi węzłami (przystankami lub zajezdniami).
-Uwzględnij wagi krawędzi (np. czas przejazdu lub dystans).
-Zmierz wydajność algorytmu: przeprowadź benchmarki dla różnych rozmiarów sieci (np. 10, 100, 1000 węzłów) i zbadaj czas działania oraz zużycie pamięci.
+### 5. Feature Flags
+- Mechanizm dynamicznego włączania/wyłączania funkcji.
+- Flagi obsługiwane w pliku `feature_flags.json`.
 
-Kryteria oceny: 
-Poprawność algorytmu: czy znajduje faktycznie najkrótszą trasę. +
-Efektywność: czas działania algorytmu dla różnych wielkości sieci. +
-Benchmarki: czy raporty z testów wydajności są poprawnie zrealizowane i przedstawione. +
-_____________________________________________________________________________________________________________________________________________
-3. Wczytywanie sieci z pliku JSON 
-Zaimplementuj możliwość wczytywania sieci autobusowej z pliku JSON. Sieć powinna być reprezentowana w strukturze JSON, która zawiera przystanki, zajezdnie i połączenia między nimi.
+---
 
-Struktura przykładowego pliku JSON: 
+## Struktura Projektu
+```
+project/
+├── main.py                    # Główna aplikacja
+├── graph/
+│   ├── __init__.py            # Inicjalizacja modułu grafu
+│   ├── graph.py               # Klasa BusNetworkGraph
+│   ├── dijkstra_alg.py        # Implementacja algorytmu Dijkstry
+│   ├── json_import.py         # Obsługa wczytywania grafu z JSON
+├── tests/
+│   ├── __init__.py            # Inicjalizacja modułu testów
+│   ├── test_add_node.py       # Test dodawania węzłów
+│   ├── test_remove_node.py    # Test usuwania węzłów
+│   ├── test_add_edge.py       # Test dodawania krawędzi
+│   ├── test_remove_edge.py    # Test usuwania krawędzi
+│   ├── test_dijkstra_alg.py   # Test algorytmu Dijkstry
+│   ├── test_load_from_json.py # Test wczytywania grafu z JSON
+├── .gitignore                 # Gitignore z ignorowaniem niepotrzebnych plików
+├── 10.json                    # Plik JSON z 10 przystankami i łaczeniami
+├── 100.json                   # Plik JSON z 100 przystankami i łaczeniami
+├── 100.json                   # Plik JSON z 1000 przystankami i łaczeniami
+├── benchmarks.py              # Benchmarki wydajności
+├── feature_flags.py           # Mechanizm Feature Flags
+├── feature_flags.json         # Konfiguracja Feature Flags
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml          # Konfiguracja CI/CD (GitHub Actions)
+```
+
+---
+
+## Plik feature_flags.json
+```json
 {
-  "nodes": [
-    {"id": "A", "type": "bus_stop", "name": "Przystanek Główna"},
-    {"id": "B", "type": "bus_stop", "name": "Przystanek Młynarska"},
-    {"id": "C", "type": "bus_stop", "name": "Przystanek Parkowa"},
-    {"id": "D", "type": "depot", "name": "Zajezdnia Północ"},
-    {"id": "E", "type": "depot", "name": "Zajezdnia Południe"}
-  ],
-  "edges": [
-    {"from": "A", "to": "B", "distance": 3, "time": 6},
-    {"from": "B", "to": "C", "distance": 2, "time": 4},
-    {"from": "C", "to": "D", "distance": 5, "time": 10},
-    {"from": "D", "to": "A", "distance": 8, "time": 16},
-    {"from": "B", "to": "E", "distance": 6, "time": 12},
-    {"from": "E", "to": "C", "distance": 4, "time": 8}
-  ]
+    "traffic_optimization": false,
+    "benchmarking": true,
+    "enable_add_node": true,
+    "enable_remove_node": true,
+    "enable_add_edge": true,
+    "enable_remove_edge": true,
+    "enable_display_graph": true,
+    "enable_load_nodes": true,
+    "enable_load_edges": true,
+    "enable_load_properties": true
 }
+```
 
-Kryteria oceny: 
-Poprawność wczytywania JSON: Czy system poprawnie parsuje plik JSON i tworzy na jego podstawie graf. +
-Elastyczność: Czy system działa z różnymi plikami JSON o różnej strukturze (np. większa liczba węzłów, inne właściwości krawędzi). +
-_____________________________________________________________________________________________________________________________________________
-4. Kontrola wersji i CI/CD 
-Wprowadź system kontroli wersji do projektu (np. Git). Każda nowa funkcjonalność powinna być oddzielnym commitem z odpowiednim opisem.
+- **traffic_optimization:** Optymalizacja wag tras na podstawie ruchu drogowego.
+- **benchmarking:** Włączanie/wyłączanie benchmarków.
+- **enable_add_node:** Włączenie/wyłączenie dodawania węzłów.
+- **enable_remove_node:** Włączenie/wyłączenie usuwania węzłów.
+- **enable_add_edge:** Włączenie/wyłączenie dodawania krawędzi.
+- **enable_remove_edge:** Włączenie/wyłączenie usuwania krawędzi.
+- **enable_display_graph:** Włączenie/wyłączenie wyświetlania grafu.
+- **enable_load_nodes:** Włączenie/wyłączenie wczytywania węzłów z JSON.
+- **enable_load_edges:** Włączenie/wyłączenie wczytywania krawędzi z JSON.
+- **enable_load_properties:** Włączenie/wyłączenie wczytywania dodatkowych właściwości.
 
-Skonfiguruj pipeline CI/CD, który będzie automatycznie testował i wdrażał projekt przy każdej nowej zmianie w kodzie.
+---
 
-Wymagania: 
-Używaj Git do zarządzania kodem, commitując regularnie i opisując zmiany. 
-Skonfiguruj pipeline CI/CD (np. GitHub Actions, GitLab CI), który będzie uruchamiał testy i automatycznie wdrażał aplikację.
+## Uruchamianie
+### 1. Uruchamianie aplikacji
+```bash
+python main.py
+```
 
-Kryteria oceny: 
-Czy kontrola wersji jest używana poprawnie (częste commity, opisy zmian)? +
-Czy pipeline CI/CD działa poprawnie, uruchamiając testy i wdrażając aplikację? 
-_____________________________________________________________________________________________________________________________________________
-5. Testowanie kodu (TDD i testy jednostkowe) 
-Wprowadź testowanie oparte na podejściu TDD (Test Driven Development). Każdy fragment funkcjonalności, który dodajesz do systemu, powinien być najpierw opisany przez test jednostkowy, a dopiero potem zaimplementowany.
-Wymagania: 
-Stwórz testy jednostkowe dla podstawowych operacji na grafach (dodawanie węzłów, krawędzi, znajdowanie najkrótszej ścieżki).
-Wykorzystaj narzędzia do automatycznego uruchamiania testów (np. JUnit, PyTest).
+### 2. Uruchamianie testów
+```bash
+pytest tests/
+```
 
-Kryteria oceny: 
-Czy wszystkie funkcjonalności są pokryte testami jednostkowymi? +
-Czy kod jest pisany zgodnie z zasadami TDD? +
-_____________________________________________________________________________________________________________________________________________
-6. Feature Flagi (Zarządzanie ryzykiem) 
-Wprowadź mechanizm Feature Flag, który umożliwia dynamiczne włączanie i wyłączanie niektórych funkcji w systemie bez konieczności zmiany kodu.
+### 3. Lokalna symulacja CI/CD
+Jeśli używasz narzędzia [Act](https://github.com/nektos/act):
+```bash
+act push -j test
+```
 
-Wymagania: 
-Zaimplementuj możliwość dodawania nowych funkcji (np. optymalizacja pod kątem ruchu drogowego) z możliwością ich wyłączenia bez modyfikacji głównej logiki.
-Upewnij się, że system jest w stanie działać nawet bez tych dodatkowych funkcji.
+---
 
-Kryteria oceny: 
-Czy mechanizm Feature Flagów działa poprawnie? +
-Czy możesz łatwo włączać i wyłączać funkcje w systemie? +
-_____________________________________________________________________________________________________________________________________________
-7. Dokumentacja 
-Dodaj do systemu dokumentacje, co i jak robi projekt oraz ważne informacje projektowe.
+## Konfiguracja CI/CD
+- **Plik `.github/workflows/ci-cd.yml`** definiuje pipeline CI/CD z:
+  - Testami jednostkowymi.
+  - Symulacją wdrożenia.
+- Pipeline uruchamia się automatycznie przy zmianach w głównej gałęzi (`main`).
 
-Wymagania i kryteria oceny: 
-Dokumentacja w formie docStringów w kodzie
-Wygenerowana dokumentacja w postaci github pages i MkDocs (w postaci pipelinu)
-Dokładne i dopieszczone README.md projektu
-_____________________________________________________________________________________________________________________________________________
-8. Code Review i umiejętności miękkie 
-Pracując w zespole, przeprowadź code review. Każdy członek zespołu powinien przeanalizować kod innego członka, sugerując poprawki, optymalizacje i lepsze rozwiązania.
+---
 
-Wymagania: 
-Każdy musi przeprowadzić przynajmniej jedno code review na kodzie kolegi/koleżanki.
-Dyskutujcie o rozwiązaniach w sposób konstruktywny, uzasadniając swoje komentarze.
+## Benchmarki
+- Obsługuje testy wydajności dla grafów o różnych rozmiarach.
+- Wyniki są prezentowane w konsoli.
 
-Kryteria oceny: 
-Jakość code review (czy poprawki są wartościowe, czy są konstruktywne).
-Umiejętność dyskusji technicznej (czy wyrażacie się jasno i bez zbędnych emocji).
-Links to this page
+Przykładowy wynik dla grafu 1000 węzłów:
+```
+Dodawanie węzłów: 0.1234 s
+Dodawanie krawędzi: 0.5678 s
+Najkrótsza ścieżka: 1.2345 s
+```
+
+---
+
+## Przykładowy plik JSON
+```json
+{
+    "nodes": ["Stop_1", "Stop_2", "Stop_3"],
+    "edges": [
+        {"from": "Stop_1", "to": "Stop_2", "weight": 5},
+        {"from": "Stop_2", "to": "Stop_3", "weight": 10}
+    ],
+    "properties": {
+        "description": "Przykładowy graf autobusowy"
+    }
+}
+```
+
+---
+
+## Rozszerzenia
+- Wdrożenie algorytmu A* dla lepszej wydajności w dużych grafach.
+- Wizualizacja grafu za pomocą bibliotek takich jak `matplotlib` lub `networkx`.
+- Dynamiczne wczytywanie danych o ruchu drogowym w czasie rzeczywistym.

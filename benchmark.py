@@ -3,6 +3,16 @@ import random
 from graph import BusNetworkGraph, dijkstra_alg, load_from_json
 
 def generate_test_graph(num_nodes, num_edges):
+    """
+    Generuje graf testowy z określoną liczbą węzłów i krawędzi.
+
+    Args:
+        num_nodes (int): Liczba węzłów w grafie.
+        num_edges (int): Liczba krawędzi w grafie.
+
+    Returns:
+        tuple: Obiekt BusNetworkGraph i lista węzłów.
+    """
     graph = BusNetworkGraph()
     nodes = [f"Stop_{i}" for i in range(1, num_nodes + 1)]
     for node in nodes:
@@ -17,15 +27,34 @@ def generate_test_graph(num_nodes, num_edges):
     
     return graph, nodes
 
-
 def benchmark_operation(name, func, *args, **kwargs):
+    """
+    Mierzy czas wykonania określonej operacji.
+
+    Args:
+        name (str): Nazwa operacji.
+        func (callable): Funkcja, której czas wykonania ma być zmierzony.
+        *args: Argumenty pozycyjne przekazywane do funkcji.
+        **kwargs: Argumenty słownikowe przekazywane do funkcji.
+
+    Returns:
+        tuple: Wynik funkcji i czas wykonania w sekundach.
+    """
     start_time = time.time()
     result = func(*args, **kwargs)
     end_time = time.time()
     return result, end_time - start_time
 
-
 def run_benchmarks():
+    """
+    Uruchamia benchmarki wydajności dla różnych rozmiarów grafów.
+
+    Testowane przypadki obejmują małe, średnie i duże grafy.
+    Wyniki obejmują czas dodawania węzłów, krawędzi oraz obliczania najkrótszej ścieżki.
+
+    Returns:
+        None
+    """
     test_cases = [
         {"num_nodes": 10, "num_edges": 20, "label": "Mały graf"},
         {"num_nodes": 100, "num_edges": 200, "label": "Średni graf"},

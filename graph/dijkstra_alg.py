@@ -3,6 +3,17 @@ from collections import defaultdict
 from feature_flags import FeatureFlags
 
 def dijkstra_alg(graph, start, end):
+    """
+    Znajduje najkrótszą trasę w grafie między dwoma węzłami za pomocą algorytmu Dijkstry.
+
+    Args:
+        graph (dict): Graf reprezentowany jako słownik sąsiedztwa.
+        start (str): Nazwa węzła początkowego.
+        end (str): Nazwa węzła końcowego.
+
+    Returns:
+        tuple: Najkrótsza ścieżka jako lista węzłów oraz jej koszt.
+    """
     feature_flags = FeatureFlags()
 
     if feature_flags.is_enabled("traffic_optimization"):
@@ -45,6 +56,15 @@ def dijkstra_alg(graph, start, end):
     return path, distances[end]
 
 def optimize_graph_based_on_traffic(graph):
+    """
+    Optymalizuje wagi krawędzi w grafie na podstawie współczynnika ruchu drogowego.
+
+    Args:
+        graph (dict): Graf reprezentowany jako słownik sąsiedztwa.
+
+    Returns:
+        dict: Zoptymalizowany graf z uwzględnieniem ruchu drogowego.
+    """
     optimized_graph = {}
     for from_node, edges in graph.items():
         optimized_graph[from_node] = {}
